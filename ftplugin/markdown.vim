@@ -22,3 +22,25 @@ endfunction
 
 inoremap === <esc>:call <SID>underline('=')<cr>i
 inoremap --- <esc>:call <SID>underline('-')<cr>i
+
+function! MarkdownToDoc()
+    let l:source = expand('%:p')
+    let l:destination = substitute(l:source, '^\(.*\)\.markdown$', '\1.odt', 'g')
+
+    if l:source == l:destination
+        return
+    endif
+
+    let l:command  = '!pandoc -f markdown -t odt -o '
+    let l:command .= shellescape(l:destination) . ' '
+    let l:command .= shellescape(l:source)
+    silent execute l:command
+
+    let l:command  = '!xdg-open ' . shellescape(l:destination) . ' '
+    let l:command .= '> /dev/null 2>&1'
+    silent execute l:command
+endfunction
+
+" TODO: What about HTML?
+nnoremap <f5> :call MarkdownToDoc()<cr>
+
