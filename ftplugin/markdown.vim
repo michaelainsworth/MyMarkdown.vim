@@ -44,3 +44,6 @@ endfunction
 " TODO: What about HTML?
 nnoremap <f5> :call MarkdownToDoc()<cr>
 
+nnoremap + :normal I#<esc>A#<esc>
+nnoremap - :s/^#\(.*\)#$/\1/g<cr>
+
