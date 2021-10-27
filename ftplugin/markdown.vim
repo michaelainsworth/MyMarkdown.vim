@@ -6,7 +6,7 @@ endif
 let b:did_ftplugin = 1
 
 setlocal textwidth=80
-setlocal formatprg=pandoc\ -f\ markdown\ -t\ html\ \|\ pandoc\ -f\ html\ -t\ markdown\ --atx-headers
+setlocal formatprg=pandoc\ -f\ markdown\ -t\ html\ \|\ pandoc\ -f\ html\ -t\ markdown\ --markdown-headings=atx
 
 function! MarkdownToDoc()
     let l:source = expand('%:p')
